@@ -6,6 +6,13 @@ class GramsController < ApplicationController
   
   def index
   end
+
+  def show
+  @gram = Gram.find_by_id(params[:id])
+  if @gram.blank?
+    render text: 'Not Found :(', status: :not_found
+  end
+end
   
   def create
   @gram = current_user.grams.create(gram_params)
